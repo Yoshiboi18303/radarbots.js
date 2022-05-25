@@ -94,7 +94,8 @@ module.exports = class Client {
   }
 
   /**
-   * Fetches your bot widget from the API
+   * Fetches your bot widget from the API.
+   * Returns a Buffer.
    */
   botWidget() {
     return new Promise(async (resolve, reject) => {
