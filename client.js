@@ -106,8 +106,8 @@ module.exports = class Client {
       );
       if (req.status != 200)
         return reject(`[RadarJS] - ${req.status}: ${req.statusText}`);
-      var data = await req.json();
-      return resolve(data);
+      var buffer = Buffer.from(await req.arrayBuffer())
+      return resolve(buffer)
     });
   }
 
