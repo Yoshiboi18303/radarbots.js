@@ -50,7 +50,7 @@ module.exports = class Client {
           if (req.status != 200)
             return reject(`[RadarBots.JS] - ${req.status}: ${req.statusText}`);
           var data = await req.json();
-          return resolve(data);
+          resolve(data);
         }, ms("2m"));
       } else {
         var req = await this.fetch.default(
