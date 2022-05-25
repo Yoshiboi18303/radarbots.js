@@ -32,7 +32,7 @@ module.exports = class Client {
 
     return new Promise(async (resolve, reject) => {
       if (autopost) {
-        setInterval(async () => {
+        setInterval(async (i) => {
           var req = await this.fetch.default(
             `https://radarbotdirectory.xyz/api/bot/${this.client.user.id}/stats`,
             {
@@ -51,6 +51,7 @@ module.exports = class Client {
             return reject(`[RadarBots.JS] - ${req.status}: ${req.statusText}`);
           var data = await req.json();
           resolve(data);
+          clearTimeout(i);
         }, ms("2m"));
       } else {
         var req = await this.fetch.default(
@@ -120,7 +121,7 @@ module.exports = class Client {
     if (!userID) throw new Error("The user ID is required!");
     return new Promise(async (resolve, reject) => {
       var req = await this.fetch.default(
-        `https://radarbotdirectory.xyz/lastvoted/${userID}/${this.client.user.id}`,
+        `https://radarbotdirectory.xyz/api/lastvoted/${userID}/${this.client.user.id}`,
         {
           method: "GET",
         }
