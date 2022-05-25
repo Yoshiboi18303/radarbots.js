@@ -1,6 +1,11 @@
 # Radarbots.js
 
-An unofficial package used to interact with the [Radar Bot Directory](https://radarbotdirectory.xyz) API
+An unofficial package used to interact with the **[Radar Bot Directory](https://radarbotdirectory.xyz)** API
+
+---
+
+# Warning
+You will need to have your bot listed on the **Radar Bot Directory** for all the functions to work, otherwise you're going to get some errors.
 
 ---
 
@@ -48,7 +53,7 @@ const radar = new Radar(client, "Your Radar Bot Directory Token");
 
 client.on("ready", async () => {
   console.log("The client is ready!");
-  console.log(await radar.stats(client.guilds.cache.size), 1, true);
+  console.log(await radar.stats(client.guilds.cache.size, 1, true));
 });
 
 client.login("Your token goes here");

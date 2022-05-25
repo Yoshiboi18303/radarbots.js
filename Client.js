@@ -4,6 +4,7 @@ const ms = require("ms");
 
 module.exports = class Client {
   /**
+   * Initializes a new `radar`
    * @param {Discord.Client} client
    * @param {String} token
    */
@@ -18,9 +19,9 @@ module.exports = class Client {
 
   /**
    * Posts server stats to the API.
-   * Requires the server count, shard count will be set to 1 if not provided.
-   * Can autopost to the API if the autopost option is true.
-   * Autopost option is false by default.
+   * Requires the `server count`, `shard count` will be set to 1 if not provided.
+   * Can autopost to the API if the `autopost` option is true.
+   * The `autopost` option is false by default.
    * @param {Number} serverCount
    * @param {Number} shardCount
    * @param {Boolean} autopost
@@ -107,7 +108,7 @@ module.exports = class Client {
         }
       );
       if (req.status != 200)
-        return reject(`[RadarJS] - ${req.status}: ${req.statusText}`);
+        return reject(`[RadarBots.JS] - ${req.status}: ${req.statusText}`);
       var buffer = Buffer.from(await req.arrayBuffer());
       return resolve(buffer);
     });
@@ -127,7 +128,7 @@ module.exports = class Client {
         }
       );
       if (req.status != 200)
-        return reject(`[RadarJS] - ${req.status}: ${req.statusText}`);
+        return reject(`[RadarBots.JS] - ${req.status}: ${req.statusText}`);
       var data = await req.json();
       return resolve(data);
     });
