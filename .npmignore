@@ -3,3 +3,5 @@ replit.nix
 .config/
 .cache/
 .upm/
+.prettierignore
+.prettierrc.json
