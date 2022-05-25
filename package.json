@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Yoshiboi18303/radar-js.git"
+    "url": "git+https://github.com/Yoshiboi18303/radarbots.js.git"
   },
   "keywords": [
     "discord",
@@ -24,9 +24,9 @@
   "author": "Yoshiboi18303",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Yoshiboi18303/radar-js/issues"
+    "url": "https://github.com/Yoshiboi18303/radarbots.js/issues"
   },
-  "homepage": "https://github.com/Yoshiboi18303/radar-js#readme",
+  "homepage": "https://github.com/Yoshiboi18303/radarbots.js#readme",
   "devDependencies": {
     "prettier": "2.6.2"
   }
