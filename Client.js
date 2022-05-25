@@ -5,8 +5,8 @@ const ms = require("ms");
 module.exports = class Client {
   /**
    * Initializes a new `radar`
-   * @param {Discord.Client} client
-   * @param {String} token
+   * @param {Discord.Client} client - Your DiscordJS Client.
+   * @param {String} token - The token found from your user page on the Radar Bot Directory.
    */
   constructor(client, token) {
     this.client = client;
@@ -22,14 +22,12 @@ module.exports = class Client {
    * Requires the `server count`, `shard count` will be set to 1 if not provided.
    * Can autopost to the API if the `autopost` option is true.
    * The `autopost` option is false by default.
-   * @param {Number} serverCount
-   * @param {Number} shardCount
-   * @param {Boolean} autopost
+   * @param {Number} serverCount - The amount of servers your bot is in.
+   * @param {Number} shardCount - The amount of shards your bot has.
+   * @param {Boolean} autopost - Whether to autopost stats every 2 minutes.
    */
-  stats(serverCount, shardCount, autopost) {
+  stats(serverCount, shardCount = 1, autopost = false) {
     if (!serverCount) throw new Error("The server count is required!");
-    if (!shardCount) shardCount = 1;
-    if (!autopost) autopost = false;
 
     return new Promise(async (resolve, reject) => {
       if (autopost) {
@@ -116,7 +114,7 @@ module.exports = class Client {
 
   /**
    * Fetches the Unix Epoch Timestamp of the last time the specified user voted for your bot.
-   * @param {String} userID
+   * @param {Discord.Snowflake} userID - The ID of the user to look up.
    */
   lastVoted(userID) {
     if (!userID) throw new Error("The user ID is required!");
