@@ -1,6 +1,6 @@
 {
   "name": "radarbots.js",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "An unofficial package used to interact with the Radar Bot Directory API",
   "main": "index.js",
   "dependencies": {
