@@ -1,7 +1,5 @@
 .replit
 replit.nix
-.prettierrc.json
-.prettierignore
 .config/
 .cache/
 .upm/

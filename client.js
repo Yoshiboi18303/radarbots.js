@@ -12,7 +12,7 @@ module.exports = class Client {
     this.token = token;
     this.fetch = fetch;
 
-    if(!(this.client instanceof Discord.Client)) throw new Error("The client option needs to be a Discord.js Client!".red)
+    if(!(this.client instanceof Discord.Client)) throw new Error("The client option needs to be a Discord.js Client!")
   }
 
   /** 
@@ -25,7 +25,7 @@ module.exports = class Client {
    * @param {Boolean} autopost
    */
   stats(serverCount, shardCount, autopost) {
-    if(!serverCount) throw new Error("The server count is required!".red)
+    if(!serverCount) throw new Error("The server count is required!")
     if(!shardCount) shardCount = 1
     if(!autopost) autopost = false;
 
@@ -99,7 +99,7 @@ module.exports = class Client {
    * @param {String} userID
    */
   lastVoted(userID) {
-    if(!userID) throw new Error("The user ID is required!".red)
+    if(!userID) throw new Error("The user ID is required!")
     return new Promise(async (resolve, reject) => {
       var req = await this.fetch.default(`https://radarbotdirectory.xyz/lastvoted/${userID}/${this.client.user.id}`, {
         method: "GET"
