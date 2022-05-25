@@ -1,4 +1,4 @@
-# Radar-js
+# Radarbots-js
 
 An unofficial package used to interact with the [Radar Bot Directory](https://radarbotdirectory.xyz) API
 
@@ -16,7 +16,7 @@ This package was developed by Yoshiboi18303
 
 ```js
 const Discord = require("discord.js");
-const Radar = require("radar-js");
+const Radar = require("radarbots-js");
 const client = new Discord.Client({
   intents: Object.values(Discord.Intents.FLAGS),
 });
@@ -40,7 +40,7 @@ console.log(await radar.botWidget());
 
 ```js
 const Discord = require("discord.js");
-const Radar = require("radar-js");
+const Radar = require("radarbots-js");
 const client = new Discord.Client({
   intents: Object.values(Discord.Intents.FLAGS),
 });

@@ -1,5 +1,5 @@
 {
-  "name": "radar-js",
+  "name": "radarbots.js",
   "version": "0.0.1",
   "description": "An unofficial package used to interact with the Radar Bot Directory API",
   "main": "index.js",
