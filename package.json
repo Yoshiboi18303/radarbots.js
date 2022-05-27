@@ -1,6 +1,6 @@
 {
   "name": "radarbots.js",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "An unofficial package used to interact with the Radar Bot Directory API",
   "main": "index.js",
   "dependencies": {
@@ -29,5 +29,8 @@
   "homepage": "https://github.com/Yoshiboi18303/radarbots.js#readme",
   "devDependencies": {
     "prettier": "2.6.2"
+  },
+  "engines": {
+    "node": ">=16.6.1"
   }
 }

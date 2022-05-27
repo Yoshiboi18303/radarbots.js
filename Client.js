@@ -25,13 +25,14 @@ module.exports = class Client {
    * @param {Number} serverCount - The amount of servers your bot is in.
    * @param {Number} shardCount - The amount of shards your bot has.
    * @param {Boolean} autopost - Whether to autopost stats every 2 minutes.
+   * @returns A Promise either containing the status code (if it's not 200 OK), or a success message.
    */
   stats(serverCount, shardCount = 1, autopost = false) {
     if (!serverCount) throw new Error("The server count is required!");
 
-    return new Promise(async (resolve, reject) => {
-      if (autopost) {
-        setInterval(async (i) => {
+    if (autopost) {
+      setInterval(() => {
+        new Promise(async (resolve, reject) => {
           var req = await this.fetch.default(
             `https://radarbotdirectory.xyz/api/bot/${this.client.user.id}/stats`,
             {
@@ -41,18 +42,18 @@ module.exports = class Client {
                 Authorization: this.token,
               },
               body: JSON.stringify({
-                guilds: serverCount,
+                servers: serverCount,
                 shards: shardCount,
               }),
             }
           );
-          if (req.status != 200)
-            return reject(`[RadarBots.JS] - ${req.status}: ${req.statusText}`);
           var data = await req.json();
-          resolve(data);
-          clearTimeout(i);
-        }, ms("2m"));
-      } else {
+          if (req.status != 200) reject(data);
+          else resolve(data);
+        });
+      }, ms("2m"));
+    } else {
+      return new Promise(async (resolve, reject) => {
         var req = await this.fetch.default(
           `https://radarbotdirectory.xyz/api/bot/${this.client.user.id}/stats`,
           {
@@ -62,17 +63,16 @@ module.exports = class Client {
               Authorization: this.token,
             },
             body: JSON.stringify({
-              guilds: serverCount,
+              servers: serverCount,
               shards: shardCount,
             }),
           }
         );
-        if (req.status != 200)
-          return reject(`[RadarBots.JS] - ${req.status}: ${req.statusText}`);
         var data = await req.json();
-        return resolve(data);
-      }
-    });
+        if (req.status != 200) reject(data);
+        resolve(data);
+      });
+    }
   }
 
   /**
@@ -95,7 +95,6 @@ module.exports = class Client {
 
   /**
    * Fetches your bot widget from the API.
-   * Returns a Buffer.
    */
   botWidget() {
     return new Promise(async (resolve, reject) => {

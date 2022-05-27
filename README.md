@@ -5,6 +5,7 @@ An unofficial package used to interact with the **[Radar Bot Directory](https://
 ---
 
 # Warning
+
 You will need to have your bot listed on the **Radar Bot Directory** for all the functions to work, otherwise you're going to get some errors.
 
 ---
