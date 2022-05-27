@@ -20,60 +20,32 @@ module.exports = class Client {
   /**
    * Posts server stats to the API.
    * Requires the `server count`, `shard count` will be set to 1 if not provided.
-   * Can autopost to the API if the `autopost` option is true.
-   * The `autopost` option is false by default.
    * @param {Number} serverCount - The amount of servers your bot is in.
    * @param {Number} shardCount - The amount of shards your bot has.
-   * @param {Boolean} autopost - Whether to autopost stats every 2 minutes.
    * @returns A Promise either containing the status code (if it's not 200 OK), or a success message.
    */
-  stats(serverCount, shardCount = 1, autopost = false) {
+  stats(serverCount, shardCount = 1) {
     if (!serverCount) throw new Error("The server count is required!");
 
-    if (autopost) {
-      var response = new Promise(async (resolve, reject) => {
-        var req = await this.fetch.default(
-          `https://radarbotdirectory.xyz/api/bot/${this.client.user.id}/stats`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: this.token,
-            },
-            body: JSON.stringify({
-              guilds: serverCount,
-              shards: shardCount,
-            }),
-          }
-        );
-        var data = await req.json();
-        if (req.status != 200) reject(data);
-        else resolve(data);
-      });
-      setInterval(() => {
-        return response;
-      }, ms("2m"));
-    } else {
-      return new Promise(async (resolve, reject) => {
-        var req = await this.fetch.default(
-          `https://radarbotdirectory.xyz/api/bot/${this.client.user.id}/stats`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: this.token,
-            },
-            body: JSON.stringify({
-              guilds: serverCount,
-              shards: shardCount,
-            }),
-          }
-        );
-        var data = await req.json();
-        if (req.status != 200) reject(data);
-        resolve(data);
-      });
-    }
+    return new Promise(async (resolve, reject) => {
+      var req = await this.fetch.default(
+        `https://radarbotdirectory.xyz/api/bot/${this.client.user.id}/stats`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: this.token,
+          },
+          body: JSON.stringify({
+            guilds: serverCount,
+            shards: shardCount,
+          }),
+        }
+      );
+      var data = await req.json();
+      if (req.status != 200) reject(data);
+      resolve(data);
+    });
   }
 
   /**
