@@ -31,26 +31,27 @@ module.exports = class Client {
     if (!serverCount) throw new Error("The server count is required!");
 
     if (autopost) {
+      var response = new Promise(async (resolve, reject) => {
+        var req = await this.fetch.default(
+          `https://radarbotdirectory.xyz/api/bot/${this.client.user.id}/stats`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: this.token,
+            },
+            body: JSON.stringify({
+              guilds: serverCount,
+              shards: shardCount,
+            }),
+          }
+        );
+        var data = await req.json();
+        if (req.status != 200) reject(data);
+        else resolve(data);
+      });
       setInterval(() => {
-        new Promise(async (resolve, reject) => {
-          var req = await this.fetch.default(
-            `https://radarbotdirectory.xyz/api/bot/${this.client.user.id}/stats`,
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: this.token,
-              },
-              body: JSON.stringify({
-                guilds: serverCount,
-                shards: shardCount,
-              }),
-            }
-          );
-          var data = await req.json();
-          if (req.status != 200) reject(data);
-          else resolve(data);
-        });
+        return response;
       }, ms("2m"));
     } else {
       return new Promise(async (resolve, reject) => {
