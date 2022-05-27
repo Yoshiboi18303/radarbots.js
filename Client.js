@@ -42,7 +42,7 @@ module.exports = class Client {
                 Authorization: this.token,
               },
               body: JSON.stringify({
-                servers: serverCount,
+                guilds: serverCount,
                 shards: shardCount,
               }),
             }
@@ -63,7 +63,7 @@ module.exports = class Client {
               Authorization: this.token,
             },
             body: JSON.stringify({
-              servers: serverCount,
+              guilds: serverCount,
               shards: shardCount,
             }),
           }
