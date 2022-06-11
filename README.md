@@ -54,9 +54,7 @@ const radar = new Radar(client, "Your Radar Bot Directory Token");
 
 client.on("ready", async () => {
   console.log("The client is ready!");
-  setInterval(() => {
-    console.log(await radar.stats(client.guilds.cache.size, 1));
-  })
+  console.log(await radar.stats(client.guilds.cache.size, 1, true));
 });
 
 client.login("Your token goes here");
