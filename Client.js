@@ -27,7 +27,7 @@ module.exports = class Client {
    * @param {Boolean} autopost - Whether to autopost to the API or not. Defaults to false.
    * @returns A Promise either containing the status code (if it's not 200 OK), or a success message.
    */
-  stats(serverCount, shardCount = 1, autopost = false) {
+  async stats(serverCount, shardCount = 1, autopost = false) {
     if (!serverCount) throw new Error("The server count is required!");
 
     if (!autopost) {
