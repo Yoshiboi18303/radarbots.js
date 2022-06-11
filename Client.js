@@ -51,7 +51,7 @@ module.exports = class Client {
         resolve(data);
       });
     } else {
-      var firstRequest = this.fetch.default(
+      var firstRequest = await this.fetch.default(
         `https://radarbotdirectory.xyz/api/bot/${this.client.user.id}`,
         {
           method: "POST",
