@@ -52,7 +52,7 @@ module.exports = class Client {
       });
     } else {
       var firstRequest = await this.fetch.default(
-        `https://radarbotdirectory.xyz/api/bot/${this.client.user.id}`,
+        `https://radarbotdirectory.xyz/api/bot/${this.client.user.id}/stats`,
         {
           method: "POST",
           headers: {
@@ -73,7 +73,7 @@ module.exports = class Client {
             setInterval(() => {
               return new Promise(async (resolve, reject) => {
                 var req = await this.fetch.default(
-                  `https://radarbotdirectory.xyz/api/bot/${this.client.user.id}`,
+                  `https://radarbotdirectory.xyz/api/bot/${this.client.user.id}/stats`,
                   {
                     method: "POST",
                     headers: {
